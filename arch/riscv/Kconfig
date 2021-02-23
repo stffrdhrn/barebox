@@ -8,6 +8,7 @@ config RISCV
 	select COMMON_CLK
 	select COMMON_CLK_OF_PROVIDER
 	select CLKDEV_LOOKUP
+	select HAS_ARCH_SJLJ
 
 config ARCH_TEXT_BASE
 	hex
