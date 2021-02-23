@@ -12,6 +12,7 @@ config MIPS
 	select HAS_DMA
 	select ARCH_HAS_DATA_ABORT_MASK
 	select ELF
+	select HAS_ARCH_SJLJ
 	default y
 
 config SYS_SUPPORTS_BIG_ENDIAN
