@@ -143,15 +143,6 @@ config DRIVER_NET_EP93XX
 	depends on ARCH_EP93XX
 	select PHYLIB
 
-config DRIVER_NET_ETHOC
-	bool "OpenCores ethernet MAC driver"
-	depends on OPENRISC
-	depends on HAS_CACHE
-	select PHYLIB
-	help
-	  This option enables support for the OpenCores 10/100 Mbps
-	  Ethernet MAC core.
-
 config DRIVER_NET_FEC_IMX
 	bool "i.MX FEC Ethernet driver"
 	depends on ARCH_HAS_FEC_IMX || COMPILE_TEST
