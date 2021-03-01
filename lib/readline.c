@@ -3,6 +3,7 @@
 #include <init.h>
 #include <libbb.h>
 #include <poller.h>
+#include <bthread.h>
 #include <xfuncs.h>
 #include <complete.h>
 #include <linux/ctype.h>
@@ -199,8 +200,10 @@ int readline(const char *prompt, char *buf, int len)
 	puts (prompt);
 
 	while (1) {
-		while (!tstc())
+		while (!tstc()) {
 			poller_call();
+			bthread_reschedule();
+		}
 
 		ichar = read_key();
 

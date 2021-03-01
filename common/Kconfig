@@ -20,6 +20,11 @@ config HAS_CACHE
 	  Drivers that depend on a cache implementation can depend on this
 	  config, so that you don't get a compilation error.
 
+config HAS_ARCH_SJLJ
+	bool
+	help
+	  Architecture has support implemented for setjmp()/longjmp()/initjmp()
+
 config HAS_DMA
 	bool
 	help
@@ -954,6 +959,14 @@ config BAREBOXCRC32_TARGET
 
 config POLLER
 	bool "generic polling infrastructure"
+
+config BTHREAD
+	bool "barebox co-operative (green) thread infrastructure"
+	depends on HAS_ARCH_SJLJ
+	help
+	 barebox threads are lightweight cooperative (green) threads that are
+	 scheduled within delay loops and the console idle to asynchronously
+	 execute actions, like checking for link up or feeding a watchdog.
 
 config STATE
 	bool "generic state infrastructure"

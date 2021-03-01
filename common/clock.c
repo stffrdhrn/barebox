@@ -14,6 +14,7 @@
 #include <linux/math64.h>
 #include <clock.h>
 #include <poller.h>
+#include <bthread.h>
 
 static uint64_t time_ns;
 
@@ -171,8 +172,10 @@ int is_timeout(uint64_t start_ns, uint64_t time_offset_ns)
 {
 	int ret = is_timeout_non_interruptible(start_ns, time_offset_ns);
 
-	if (time_offset_ns >= 100 * USECOND)
+	if (time_offset_ns >= 100 * USECOND) {
 		poller_call();
+		bthread_reschedule();
+	}
 
 	return ret;
 }
